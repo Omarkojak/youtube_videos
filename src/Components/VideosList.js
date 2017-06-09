@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import {
+  Container,
+  Content,
+  List
+} from 'native-base';
+import VideoItem from './VideoItem';
 
 class VideosList extends Component {
 
@@ -10,9 +15,18 @@ class VideosList extends Component {
 
   render() {
     return (
-      <View>
-        <Text>List here !!</Text>
-      </View>
+      <Container>
+        <Content>
+          <List 
+            dataArray={this.props.videos}
+            renderRow={(video) => 
+              <VideoItem 
+                video={video}
+              />
+            } 
+          />
+        </Content>
+      </Container>
     );
   }
 }
