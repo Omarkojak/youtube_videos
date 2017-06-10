@@ -15,3 +15,10 @@ export const LOGIN_SUCESS = 'login_sucess';
 export const SEARCH_DATA_CHANGE = 'search_data_change';
 export const START_YOUTUBE_FETCH = 'start_youtube_search';
 export const YOUTUBE_VIDEOS_LIST = 'youtube_videos_list';
+
+/**
+ * Favorite Videos Action types
+ */
+
+export const START_VIDEO_FAVORITE = 'start_video_favorite';
+export const VIDEO_FAVORITE = 'video_favorite';
