@@ -6,7 +6,9 @@ import {
   START_YOUTUBE_FETCH,
   YOUTUBE_VIDEOS_LIST,
   START_VIDEO_FAVORITE,
-  VIDEO_FAVORITE
+  VIDEO_FAVORITE,
+  START_FAVORITE_VIDEOS_FETCH,
+  VIDEOS_FETCH_SUCCESS
 } from './types';
 
 export const searchDataChange = (value) => ({
@@ -48,5 +50,21 @@ export const favoriteVideo = (video) => {
       });
     })
     ;
+  };
+};
+
+export const fetchFavoriteVideos = () => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    dispatch({
+      type: START_FAVORITE_VIDEOS_FETCH
+    });
+
+    firebase.database().ref(`users/${currentUser.uid}/videos`)
+    .on('value', snapshot => {
+      console.log('snapshot', snapshot.val());
+      dispatch({ type: VIDEOS_FETCH_SUCCESS, payload: snapshot.val() });
+    });
   };
 };

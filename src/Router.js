@@ -2,7 +2,8 @@ import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import LoginForm from './Components/LoginForm';
 import Dashboard from './Components/Dashboard';
-import videosList from './Components/VideosList';
+import VideosList from './Components/VideosList';
+import FavoriteVideosList from './Components/FavoritesVideosList';
 
 const RouterComponent = () => (
     <Router sceneStyle={{ paddingTop: 65 }}>
@@ -24,8 +25,13 @@ const RouterComponent = () => (
         />
         <Scene 
           key="videosList"
-          component={videosList}
+          component={VideosList}
           title="Videos"
+        />
+        <Scene 
+          key="favoriteVideos"
+          component={FavoriteVideosList}
+          title="Favorites"
         />
       </Scene>
 

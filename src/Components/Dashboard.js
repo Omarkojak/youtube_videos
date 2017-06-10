@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
-import { TouchableOpacity } from 'react-native';
-import { Header, Item, Icon, Input, Container } from 'native-base';
+import { TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
+import { 
+  Header, 
+  Item, 
+  Icon, 
+  Input, 
+  Container, 
+  Content, 
+  Button 
+} from 'native-base';
 import { 
   searchDataChange,
   searchYoutube 
@@ -16,6 +25,10 @@ class Dashboard extends Component {
 
   onChangeText(value) {
     this.props.searchDataChange(value);
+  }
+
+  onFavoritesPress() {
+    Actions.favoriteVideos();
   }
 
   render() {
@@ -37,11 +50,24 @@ class Dashboard extends Component {
                 <Icon acitve name='arrow-forward' />
               </TouchableOpacity>
             </Item>
-        </Header>        
+        </Header>  
+
+        <Content>
+          <Button block onPress={this.onFavoritesPress.bind(this)}>
+            <Text style={styles.buttonTextStyle}>Favorites</Text>
+          </Button>
+        </Content>      
       </Container>
     );
   }
 }
+
+const styles = {
+    buttonTextStyle: {
+    fontSize: 18,
+    color: 'white'
+  }
+};
 
 const mapStateToProps = (state) => ({ searchText: state.dashboard.searchText });
 

@@ -22,3 +22,5 @@ export const YOUTUBE_VIDEOS_LIST = 'youtube_videos_list';
 
 export const START_VIDEO_FAVORITE = 'start_video_favorite';
 export const VIDEO_FAVORITE = 'video_favorite';
+export const START_FAVORITE_VIDEOS_FETCH = 'start_favorite_videos_fetch';
+export const VIDEOS_FETCH_SUCCESS = 'videos_fetch_success';

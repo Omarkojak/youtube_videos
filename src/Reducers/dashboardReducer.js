@@ -3,7 +3,9 @@ import {
   START_YOUTUBE_FETCH,
   YOUTUBE_VIDEOS_LIST,
   START_VIDEO_FAVORITE,
-  VIDEO_FAVORITE
+  VIDEO_FAVORITE,
+  START_FAVORITE_VIDEOS_FETCH,
+  VIDEOS_FETCH_SUCCESS
 } from '../Actions/types';
 
 /**
@@ -14,7 +16,9 @@ const INITIAL_STATE = {
   searchText: '',
   loadingVideos: false,
   videos: '',
-  loadingFavorite: false
+  loadingFavorite: false,
+  fetchingFavorite: false,
+  favoriteVideos: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -29,6 +33,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, loadingFavorite: true };
     case VIDEO_FAVORITE:
       return { ...state, videos: favoriteVideo(state.videos, action), loadingFavorite: false };
+    case START_FAVORITE_VIDEOS_FETCH: 
+      return { ...state, fetchingFavorite: true };
+    case VIDEOS_FETCH_SUCCESS:
+      return { ...state, favoriteVideos: action.payload, fetchingFavorite: false };
     default:
       return INITIAL_STATE;
   }
