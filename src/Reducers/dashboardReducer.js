@@ -28,7 +28,7 @@ export default (state = INITIAL_STATE, action) => {
     case START_VIDEO_FAVORITE:
       return { ...state, loadingFavorite: true };
     case VIDEO_FAVORITE:
-      return { ...state };
+      return { ...state, videos: favoriteVideo(state.videos, action), loadingFavorite: false };
     default:
       return INITIAL_STATE;
   }
