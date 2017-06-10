@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Image, TouchableWithoutFeedback, Linking } from 'react-native';
-import { CardItem, Text, Card } from 'native-base';
+import { CardItem, Text, Card, Button } from 'native-base';
+import { unfavoriteVideo } from '../Actions/dashboardActions';
 
 class FavoriteVideoItem extends Component {
 
   componentWillMount() {
     console.log('item', this.props.video);
+  }
+
+  onButtonPress() {
+    const { uid } = this.props.video;
+    this.props.unfavoriteVideo(uid);
   }
 
   render() {
@@ -32,6 +39,12 @@ class FavoriteVideoItem extends Component {
             <Text note>{channelTitle}</Text>
             <Text>{description}</Text>
           </CardItem>
+          
+          <CardItem style={{ justifyContent: 'center' }}>
+            <Button block onPress={this.onButtonPress.bind(this)}>
+              <Text style={styles.buttonTextStyle}>Remove from favorites</Text>
+            </Button>
+          </CardItem>
 
         </Card>
       </TouchableWithoutFeedback>
@@ -50,7 +63,11 @@ const styles = {
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'flex-start'
+  },
+  buttonTextStyle: {
+    fontSize: 18,
+    color: 'white'
   }
 };
 
-export default FavoriteVideoItem;
+export default connect(null, { unfavoriteVideo })(FavoriteVideoItem);

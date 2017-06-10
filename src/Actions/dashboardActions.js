@@ -63,8 +63,19 @@ export const fetchFavoriteVideos = () => {
 
     firebase.database().ref(`users/${currentUser.uid}/videos`)
     .on('value', snapshot => {
-      console.log('snapshot', snapshot.val());
       dispatch({ type: VIDEOS_FETCH_SUCCESS, payload: snapshot.val() });
     });
   };
+};
+
+export const unfavoriteVideo = (vid) => {
+    const { currentUser } = firebase.auth();
+    
+    return () => {
+        firebase.database().ref(`users/${currentUser.uid}/videos/${vid}`)
+        .remove()
+        .then(() => {
+            Actions.favoriteVideos({ type: 'reset' });
+        });
+    };
 };
