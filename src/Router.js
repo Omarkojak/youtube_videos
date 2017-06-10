@@ -4,6 +4,7 @@ import LoginForm from './Components/LoginForm';
 import Dashboard from './Components/Dashboard';
 import VideosList from './Components/VideosList';
 import FavoriteVideosList from './Components/FavoritesVideosList';
+import IFrame from './Components/IFrame';
 
 const RouterComponent = () => (
     <Router sceneStyle={{ paddingTop: 65 }}>
@@ -32,6 +33,11 @@ const RouterComponent = () => (
           key="favoriteVideos"
           component={FavoriteVideosList}
           title="Favorites"
+        />
+        <Scene 
+          key="iframe"
+          component={IFrame}
+          title="Watch"
         />
       </Scene>
 

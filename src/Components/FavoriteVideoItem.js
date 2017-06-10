@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { WebView } from 'react-native';
+import { Image, TouchableWithoutFeedback } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import { CardItem, Text, Card, Button } from 'native-base';
 import { unfavoriteVideo } from '../Actions/dashboardActions';
 
@@ -17,19 +18,20 @@ class FavoriteVideoItem extends Component {
 
   render() {
     const { snippet, id } = this.props.video;
-    const { publishedAt, title, description, channelTitle } = snippet;
+    const { publishedAt, title, description, thumbnails, channelTitle } = snippet;
     
-    const { videoContainerStyle, cardContentContainerStyle } = styles;
+    const { imageStyle, cardContentContainerStyle } = styles;
 
     return (
-
+      <TouchableWithoutFeedback 
+        onPress={() => Actions.iframe({ id })}
+      >
         <Card>
           <CardItem>
-            <WebView 
-              source={{ uri: `http://www.youtube.com/embed/${id.videoId}` }}
-              style={videoContainerStyle}
-
-            />
+              <Image
+                style={imageStyle}
+                source={{ uri: thumbnails.medium.url }}
+              />
           </CardItem>
 
           <CardItem style={cardContentContainerStyle}>
@@ -46,12 +48,18 @@ class FavoriteVideoItem extends Component {
           </CardItem>
 
         </Card>
+      </TouchableWithoutFeedback>
 
     );
   }
 }
 
 const styles = {
+  imageStyle: {
+    height: 300,
+    flex: 1,
+    width: null
+  },
   cardContentContainerStyle: {
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -60,11 +68,6 @@ const styles = {
   buttonTextStyle: {
     fontSize: 18,
     color: 'white'
-  },
-  videoContainerStyle: {
-    width: null, 
-    height: 300, 
-    position: 'relative'
   }
 };
 
