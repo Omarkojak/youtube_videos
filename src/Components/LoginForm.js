@@ -54,6 +54,7 @@ class LoginForm extends Component {
                 placeholder="example@me.com"
                 value={this.props.email}
                 onChangeText={this.onChangeEmail.bind(this)}
+                autoCorrect={false}
               />
             </Item>
 
@@ -61,9 +62,10 @@ class LoginForm extends Component {
               <Label>Password</Label>
               <Input 
                 secureTextEntry 
-                placeholder="Password"
+                placeholder="password"
                 value={this.props.password}
                 onChangeText={this.onChangePassword.bind(this)}
+                autoCorrect={false}
               />
             </Item>
             

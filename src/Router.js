@@ -13,7 +13,7 @@ const RouterComponent = () => (
         <Scene 
           key="login"
           component={LoginForm}
-          title="App Name"
+          title="Youtube Favorites"
         />
       </Scene>
 

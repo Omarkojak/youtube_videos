@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import React, { Component } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { 
@@ -10,7 +10,9 @@ import {
   Input, 
   Container, 
   Content, 
-  Button 
+  Button,
+  Footer,
+  FooterTab
 } from 'native-base';
 import { 
   searchDataChange,
@@ -59,16 +61,31 @@ class Dashboard extends Component {
               </TouchableOpacity>
             </Item>
         </Header>  
-
+        
         <Content>
-          <Button block onPress={this.onFavoritesPress.bind(this)}>
-            <Text style={styles.buttonTextStyle}>Favorites</Text>
-          </Button>
+          <View>
+            <Button block onPress={this.onFavoritesPress.bind(this)}>
+              <Text style={styles.buttonTextStyle}>Favorites</Text>
+            </Button>
+          </View>
           
-          <Button block onPress={this.onLogoutPress.bind(this)}>
-            <Text style={styles.buttonTextStyle}>Logout</Text>
-          </Button>
-        </Content>      
+          <View style={{ marginTop: 80 }}>
+            <Text style={styles.welcomeTextStyle}>
+              Welcome to Youtube Favorites!
+            </Text>
+          </View>
+
+        </Content>
+
+        <Footer>
+          <FooterTab>
+            <Button block onPress={this.onLogoutPress.bind(this)}>
+              <Text style={styles.buttonTextStyle}>Logout</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+
+        
       </Container>
     );
   }
@@ -78,6 +95,11 @@ const styles = {
     buttonTextStyle: {
     fontSize: 18,
     color: 'white'
+  },
+  welcomeTextStyle: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
   }
 };
 
