@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import React, { Component } from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
@@ -31,6 +32,13 @@ class Dashboard extends Component {
     Actions.favoriteVideos();
   }
 
+  onLogoutPress() {
+    firebase.auth().signOut();
+    Actions.auth({
+      type: 'reset'
+    });
+  }
+
   render() {
     return (
       <Container>
@@ -55,6 +63,10 @@ class Dashboard extends Component {
         <Content>
           <Button block onPress={this.onFavoritesPress.bind(this)}>
             <Text style={styles.buttonTextStyle}>Favorites</Text>
+          </Button>
+          
+          <Button block onPress={this.onLogoutPress.bind(this)}>
+            <Text style={styles.buttonTextStyle}>Logout</Text>
           </Button>
         </Content>      
       </Container>
