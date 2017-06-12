@@ -1,5 +1,4 @@
 ## Youtube favorites
-============
 
 An application for searching youtube videos and favorite them. Also you can watch the videos inside the application.
 
